@@ -64,7 +64,7 @@
           "targets": [
             {
               "datasource": "",
-              "expr": "sum(irate(apiserver_request_total{client=\"clusterloader/v0.0.0 (linux/amd64) kubernetes/$Format\", verb!=\"CONNECT\"}[1m])) by (verb, resource)",
+              "expr": "sum(irate(apiserver_request_total{verb!=\"CONNECT\"}[1m])) by (verb, resource)",
               "format": "time_series",
               "instant": false,
               "interval": "5s",
@@ -702,7 +702,7 @@
           "targets": [
             {
               "datasource": "",
-              "expr": "sum(irate(apiserver_request_total{verb=\"POST\", resource=\"pods\", subresource=\"\"}[1m])) by (client)",
+              "expr": "irate(apiserver_request_total{verb=\"POST\", resource=\"pods\", subresource=\"\"}[1m])",
               "format": "time_series",
               "instant": false,
               "interval": "5s",
@@ -798,7 +798,7 @@
           "targets": [
             {
               "datasource": "",
-              "expr": "sum(irate(apiserver_request_total{verb=\"POST\", resource=\"pods\", subresource=\"binding\"}[1m])) by (client)",
+              "expr": "irate(apiserver_request_total{verb=\"POST\", resource=\"pods\", subresource=\"binding\"}[1m])",
               "format": "time_series",
               "instant": false,
               "interval": "5s",
@@ -4012,7 +4012,7 @@
           "targets": [
             {
               "datasource": "",
-              "expr": "sum(rate(apiserver_request_total{verb=\"LIST\", resource=~\"nodes|pods|services|endpoints|replicationcontrollers\"}[1m])) by (resource, client)",
+              "expr": "sum(rate(apiserver_request_total{verb=\"LIST\", resource=~\"nodes|pods|services|endpoints|replicationcontrollers\"}[1m])) by (resource)",
               "format": "time_series",
               "instant": false,
               "interval": "5s",
